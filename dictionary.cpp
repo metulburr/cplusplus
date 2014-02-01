@@ -36,6 +36,12 @@ class Dict{
             dictionary.erase(k);
             return val;
         }
+        
+        VALUE get(KEY k){
+            VALUE val = dictionary[k];
+            dictionary.erase(k);
+            return val;
+        }
 };
 
 int main(){
@@ -50,4 +56,7 @@ int main(){
         std::cout << i << std::endl;
 
     std::cout << "removing " << d.pop("key2") << '\n';
+    
+    std::cout << d.dictionary["key"] << std::endl;
+    std::cout << d.get("key") << std::endl;
 }
