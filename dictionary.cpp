@@ -39,7 +39,6 @@ class Dict{
         
         VALUE get(KEY k){
             VALUE val = dictionary[k];
-            dictionary.erase(k);
             return val;
         }
 };
