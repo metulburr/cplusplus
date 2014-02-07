@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <initializer_list>
 
 template <class KEY, class VALUE>
 class Dict{
@@ -11,10 +12,12 @@ class Dict{
         std::map<KEY, VALUE> dictionary;
         
         void update(KEY k, VALUE v){
+        //add a new key/value pair
             dictionary[k] = v;
         }
         
         std::vector<KEY> keys(){
+        //return all keys from dictionary
             std::vector<KEY> v;
             for(class std::map<KEY, VALUE>::const_iterator it = dictionary.begin();
             it != dictionary.end(); ++it){
@@ -24,6 +27,7 @@ class Dict{
         }
         
         std::vector<VALUE> values(){
+        //return all values from dictionary
             std::vector<VALUE> v;
             for(class std::map<KEY, VALUE>::const_iterator it = dictionary.begin();
             it != dictionary.end(); ++it){
@@ -32,14 +36,27 @@ class Dict{
             return v;
         }
         VALUE pop(KEY k){
+        //return value of key removed, removes key/value pair in process
             VALUE val = dictionary[k];
             dictionary.erase(k);
             return val;
         }
         
         VALUE get(KEY k){
+        //return value of k given
             VALUE val = dictionary[k];
             return val;
+        }
+        
+        void clear(){
+            dictionary.clear();
+        }
+        
+        void fromkeys(std::initializer_list<KEY> keys, VALUE v){
+        //set all of list as keys, with each having a value of v
+            for(auto k:keys){
+                dictionary[k] = v;
+            }
         }
 };
 
@@ -58,4 +75,8 @@ int main(){
     
     std::cout << d.dictionary["key"] << std::endl;
     std::cout << d.get("key") << std::endl;
+    
+    d.clear();
+    
+    d.fromkeys({"a", "b", "c", "d"}, "0");
 }
