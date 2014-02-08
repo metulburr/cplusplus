@@ -79,4 +79,9 @@ int main(){
     d.clear();
     
     d.fromkeys({"a", "b", "c", "d"}, "0");
+    
+    for(auto key:d.keys()){
+        std::cout << key << " -> " << d.get(key) << std::endl;
+    }
+        
 }
