@@ -58,6 +58,17 @@ class Dict{
                 dictionary[k] = v;
             }
         }
+        
+        std::string display(){
+            std::string disp;
+            for(auto key:keys()){
+                disp += key;
+                disp += " -> ";
+                disp += this->get(key);
+                disp += '\n';
+            }
+            return disp;
+        }
 };
 
 int main(){
@@ -81,7 +92,9 @@ int main(){
     d.fromkeys({"a", "b", "c", "d"}, "0");
     
     for(auto key:d.keys()){
-        std::cout << key << " -> " << d.get(key) << std::endl;
+        std::cout << key << " = " << d.get(key) << std::endl;
     }
-        
+    
+    std::cout << d.display();
+
 }
