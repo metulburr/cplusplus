@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iomanip>
 #include <initializer_list>
+#include <algorithm> 
 
 template <class KEY, class VALUE>
 class Dict{
@@ -69,6 +70,25 @@ class Dict{
             }
             return disp;
         }
+        
+        std::vector<KEY> sorted(){
+        //return vector of sorted keys
+            std::vector<VALUE> v;
+            for(class std::map<KEY, VALUE>::const_iterator it = dictionary.begin();
+            it != dictionary.end(); ++it){
+                v.push_back(it->second);
+            }
+            std::sort(v.begin(), v.end());
+            std::vector<KEY> k;
+            for (int i=0; i < v.size(); i++){
+                for (auto key:keys()){
+                    if (v[i]==get(key)){
+                        k.push_back(key);
+                    }
+                }
+            }
+            return k;
+        }
 };
 
 int main(){
@@ -96,5 +116,16 @@ int main(){
     }
     
     std::cout << d.display();
+    
+    
+    Dict<std::string, int> dicter;
+    dicter.update("key", 6);
+    dicter.update("key2", 2);
+    dicter.update("key3", 28);
+    dicter.update("key4", 1);
+    dicter.update("key5", 11);
+    for(auto key:dicter.sorted()){
+        std::cout << key << " = " << dicter.get(key) << std::endl;
+    }
 
 }
